@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Pong</title>
-	</head>
-	<body>
-		<div class="game-wrapper">
-			<h1>Pong</h1>
-			<div id="game"></div>
-			<!-- Rough-out your SVG mark-up here to start... -->
-		</div>
-		<script type="text/javascript" src="build/bundle.js"></script>
-	</body>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Pong</title>
+</head>
+
+<body>
+	<div class="game-wrapper">
+		<h1>Pong</h1>
+		<div id="game"></div>
+		<!-- Rough-out your SVG mark-up here to start... -->
+	</div>
+	<script type="text/javascript" src="build/bundle.js"></script>
+
+
+
+	<!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="256" width="512" viewBox="0 0 512 256">
+		<rect height="256" width="512" fill="#353535" />
+		<rect height="56" width="8" fill="white" x="10" y="100" />
+		<line stroke-dasharray="20, 15" x1="255" y1="0" x2="257" y2="256" stroke="white" stroke-width="4" />
+		<rect height="56" width="8" fill="white" x="494" y="100" />
+		<circle id="ball" r="8" cx="256" cy="128" fill="white" />
+	</svg> -->
+</body>
+
 </html>
+
+<!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 512 256" width="512" height="256">
+	<g>
+		<rect id="field" x="0" y="0" width="512" height="256" fill="#353535" />
+		<rect id="paddle1" x="12" y="50" width="8" height="56" fill="white" />
+		<rect id="paddle2" x="490" y="50" width="8" height="56" fill="white" />
+		<circle id="ball" cx="50" cy="50" r="8" fill="white" />
+		<line x1="250" y1="300" x2="250" y2="0" stroke="white" stroke-width="5"
+          stroke-dasharray="20" />
+	</g>
+</svg> -->
+
+<!-- Your SVG should include:
+
+A board (512 x 256 pixels, #353535 background)
+2 paddles (56 x 8 pixels)
+A ball in the center of the board (8 pixels radius)
+A dividing line down the middle of the board (look into the stroke-dasharray attribute) -->
