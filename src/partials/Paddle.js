@@ -13,16 +13,28 @@ export default class Paddle {
         document.addEventListener('keydown', event => {
             switch (event.key) {
                 case up:
-                console.log("up");
-                    // this.up();
+                    this.up();
                     break;
                 case down:
-                console.log("down")
-                    // this.down();
-                    break;    
+                    this.down();
+                    break;
+                    
+                default: 
+                // what goes here and is this necessary??
             }
         
           });
+    }
+
+    up() {
+        //establish max position
+        this.y = Math.max(0, this.y - this.speed);
+    
+    }
+
+    down() {
+        //establish min y position
+        this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
     }
 
     
