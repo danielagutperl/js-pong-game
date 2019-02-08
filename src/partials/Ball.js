@@ -6,7 +6,24 @@ export default class Ball {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.direction = 1;
+        this.reset();
     }
+
+    wallCollision() {
+
+    }
+
+    paddleCollision() {
+
+    }
+
+    goal(player) {
+// increment score
+// reset Ball
+// reset paddle
+
+    }
+
 
 reset() {
     this.x = this.boardWidth / 2;
@@ -20,5 +37,12 @@ render(svg, player1, player2) {
     circle.setAttributeNS(null, 'fill', 'white');
 
     svg.appendChild(circle);
+
+//     Detect goal
+//     left goal variable 
+//     right goal variable
+
+
+
 }
 }

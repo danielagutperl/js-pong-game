@@ -41,9 +41,8 @@ export default class Game {
       KEYS.up,
       KEYS.down,
     )
-
-
   }
+
 
   render() {
     // More code goes here....
