@@ -1,10 +1,10 @@
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
+import { SVG_NS } from '../settings';
+import { KEYS } from '../settings';
+import Score from './Score';
 
-import { SVG_NS, KEYS } from '../settings';
-
-// import { settings } from "cluster";
 export default class Game {
   constructor(element, width, height) {
     this.element = element;
@@ -12,9 +12,8 @@ export default class Game {
     this.height = height;
 
     // Other code goes here...
-
     this.gameElement = document.getElementById(this.element);
-    //create board and set width and height
+    // Create a board object and set width and height to game width and height
     this.board = new Board(this.width, this.height);
     this.ball = new Ball(8, this.width, this.height);
 
@@ -23,54 +22,80 @@ export default class Game {
     this.boardGap = 10;
 
     this.player1 = new Paddle(
+      // Game/ Board height
       this.height,
+      // Paddle width and height
       this.paddleWidth,
       this.paddleHeight,
+      // Gap between paddle and board side
       this.boardGap,
       ((this.height - this.paddleHeight) / 2),
       KEYS.a,
-      KEYS.z,
+      KEYS.z
+
     )
 
     this.player2 = new Paddle(
+      // Game/ Board height
       this.height,
+      // Paddle width and height
       this.paddleWidth,
       this.paddleHeight,
-      (this.width - this.boardGap - this.paddleWidth),
+      // Gap between paddle and board side
+      (this.width - this.boardGap-this.paddleWidth),
       ((this.height - this.paddleHeight) / 2),
       KEYS.up,
-      KEYS.down,
+      KEYS.down
+
     )
+
+    this.score1 = new Score(this.width / 2 - 50, 30, 30);
+    this.score2 = new Score(this.width / 2 + 25, 30, 30);
+
+    document.addEventListener('keydown', event => {
+      // Change boolean from true to false
+      switch (event.key) {
+        case KEYS.spaceBar:
+        this.pause = !this.pause;
+        // console.log(this.pause);
+        break;
+      }
+    });
+
   }
 
-
   render() {
+    // pause the game
+    if(this.pause) {
+      return;
+    }
     // More code goes here....
+    // Create a svg element
 
-    //empty out before rendering
+    // Be sure to debug element here
     this.gameElement.innerHTML = '';
 
-    //Create svg element
-    let svg = document.createElementNS(SVG_NS, 'svg');
+    let svg = document.createElementNS(SVG_NS,'svg');
 
-    //set attributes and 
+    // Set attributes
     svg.setAttributeNS(null, 'width', this.width);
     svg.setAttributeNS(null, 'height', this.height);
     svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 
-    // append svg to our gmae element (selected by id)
+    // Append svg to our game element (selected by id)
     this.gameElement.appendChild(svg);
 
-    //render the game components inside the svg
-
+    // render the game components insife the SVG
     this.board.render(svg);
     this.player1.render(svg);
     this.player2.render(svg);
-    this.ball.render(svg);
-    this.reset.render(svg);
-    //this render comes from this.bopard imported! the svg is created up there^^
+    this.ball.render(svg, this.player1, this.player2);
 
 
+
+  // render and update the score component based on player score
+  this.score1.render(svg, this.player1.score);
+  this.score2.render(svg, this.player2.score);
 
 
   }
